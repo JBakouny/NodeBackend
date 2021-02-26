@@ -66,9 +66,6 @@ leaderRouter.route('/:leaderId')
                 res.setHeader('Content-Type', 'application/json');
                 res.json(leader);
 
-                if (leader.forward == 1) {
-                    // dire au robot d'avancer
-                }
             }, (err) => next(err))
             .catch((err) => next(err));
     })
