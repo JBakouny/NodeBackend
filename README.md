@@ -32,3 +32,34 @@ The main points are summarized below:
 * Embedding documents is also known as denormalization. The benefit of this approach is getting all the data you need about a document and it’s sub document(s) with a single query. Therefore, this approach is very fast. The drawback is that data may not stay as consistent in the database.
 
 Also, Object-Oriented-style inheritance with Mongoose is possible but somewhat complicated. It uses [descriminators](https://mongoosejs.com/docs/discriminators.html).
+
+## Certificate Management for HTTPS
+
+### Development environment
+For development environments, it is sufficient to create your own self-signed certificate:
+
+For Linux/UNIX or Mac:
+
+```[bash]
+cd bin
+openssl genrsa 1024 > private.key
+openssl req -new -key private.key -out cert.csr
+openssl x509 -req -in cert.csr -signkey private.key -out certificate.pem
+```
+
+For Windows, you should first install [ssl](https://wiki.openssl.org/index.php/Binaries) and/or see the below articles:
+* https://blog.didierstevens.com/2015/03/30/howto-make-your-own-cert-with-openssl-on-windows/
+* https://www.faqforge.com/windows/use-openssl-on-windows/
+
+An easy alternative is to use an [online genertor](http://www.selfsignedcertificate.com/) for self-signed certificates.
+If you ever want to mimic a certification authority, see https://hohnstaedt.de/xca/
+
+### Production environment
+
+For a production environment, you need a valid certificate issues by a known certification authority.
+
+A free certification authority is https://letsencrypt.org/
+
+Hosting services like Heroku also provide [free certificates for your website]( https://devcenter.heroku.com/articles/ssl). 
+
+[CloudFlare](https://www.cloudflare.com/) also provides an alternative, as explained [here](https://www.freecodecamp.org/news/free-https-c051ca570324/).
