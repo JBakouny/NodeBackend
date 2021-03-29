@@ -13,7 +13,7 @@ dishRouter.use(bodyParser.json());
 dishRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req,res,next) => {
-        Dishes.find({})
+        Dishes.find(req.query)
             // Populate is used here to implement a foreign key-like mechanism (Mongoose population)
             // see https://mongoosejs.com/docs/populate.html
             .populate('comments.author')
