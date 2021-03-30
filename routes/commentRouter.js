@@ -17,7 +17,6 @@ commentRouter.route('/')
             // Populate is used here to implement a foreign key-like mechanism (Mongoose population)
             // see https://mongoosejs.com/docs/populate.html
             .populate('author')
-            .populate('dish')
             .then((comments) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -66,7 +65,6 @@ commentRouter.route('/:commentId')
     .get(cors.cors, (req,res,next) => {
         Comments.findById(req.params.commentId)
             .populate('author')
-            .populate('dish')
             .then((comment) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -94,7 +92,6 @@ commentRouter.route('/:commentId')
                         .then((comment) => {
                             Comments.findById(comment._id)
                                 .populate('author')
-                                .populate('dish')
                                 .then((comment) => {
                                     res.statusCode = 200;
                                     res.setHeader('Content-Type', 'application/json');
