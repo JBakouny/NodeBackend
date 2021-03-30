@@ -1,5 +1,25 @@
 # Node Express Mongoose MongoDB Server 
 
+## Running this backend code for integration with the React client App:
+
+1. Make sure the MongoDB database is up and running on the path specified in [config.js](config.js) in the backend-code. To run MongoDB locally, execute the below command in a folder containing a directory named "data" :
+
+    ```[bash]
+    mongod --dbpath=data --bind_ip 127.0.0.1
+    ```
+
+2. Get the back-end's code from [the branch "react-client-integration"](https://github.com/JBakouny/NodeBackend/tree/react-client-integration) and run the Node.js REST API by executing the below command in the NodeBackend directory that will sync from GitHub:
+
+    ```[bash]
+    git clone https://github.com/JBakouny/NodeBackend
+    git checkout react-client-integration
+    cd NodeBackend
+    npm install
+    npm start
+    ```
+
+3. Follow the [instructions](https://github.com/JBakouny/React#running-the-integrated-application) to run the React client App.
+
 ## Authentication
 
 It is not sufficient to information on the front-end, you should protect your backend from unauthorised access!
