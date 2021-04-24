@@ -6,7 +6,8 @@ var logger = require('morgan');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var passport = require('passport');
-var authenticate = require('./authenticate');
+// import authenticate if you want to protect the public folder with authentication
+//var authenticate = require('./authenticate');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
@@ -55,6 +56,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
+// Can be replaced by the following line if you need to protect the public folder with authentication:
+//app.use([authenticate.verifyUser, express.static(path.join(__dirname, 'public'))]);
+
 
 app.use('/dishes',dishRouter);
 app.use('/comments',commentRouter);
